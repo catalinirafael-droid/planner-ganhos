@@ -11,7 +11,7 @@ $('password').value='';if(error){$('notice').textContent=error.message;return}
 if(mode==='signup'&&!data.session){$('notice').textContent='Verifique seu e-mail para confirmar a conta.';return}
 await enter();}
 async function enter(){const {data:{user:u}}=await db.auth.getUser();if(!u)return;user=u;
-const {data:rows,error}=await db.from('rubinot_rp766_data').select('payload').eq('user_id',u.id).maybeSingle();
+const {data:rows,error}=await db.from('rubinot_rp766_data').select('payload,updated_at').eq('user_id',u.id).maybeSingle();
 if(error){$('notice').textContent='Erro no banco: '+error.message;return}
 d={...structuredClone(defaults),...(rows?.payload||{})};const cached=localStorage.getItem(localKey+u.id);if(cached){try{const c=JSON.parse(cached);if(c.time>Date.parse(rows?.updated_at||0)){d={...d,...c.payload};dirty=true;}}catch{}}$('auth').style.display='none';$('panel').style.display='block';render();$('status').textContent='✓ Conectado ao banco';}
 function change(){if(user)localStorage.setItem(localKey+user.id,JSON.stringify({time:Date.now(),payload:d}));dirty=true;$('status').textContent='Alterações pendentes';clearTimeout(timer);timer=setTimeout(save,900);}
