@@ -1,0 +1,1 @@
+-- Banco RubinOT RP 766 criado no Supabase. Dados protegidos por user_id e RLS.
