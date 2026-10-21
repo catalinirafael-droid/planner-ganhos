@@ -1,0 +1,1 @@
+window.RP_CONFIG={url:'https://pfiscvnuusojocwnzmtv.supabase.co',key:'sb_publishable_8mWT2rrEnxPWjWbgk3Cvow_boFZfon_'};
